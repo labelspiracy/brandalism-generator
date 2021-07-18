@@ -5,36 +5,55 @@
     let currentCampaign;
 
     function init() {
+        canvasFabric = new fabric.Canvas('canvas');
+
         fetch(`campaigns.json?bust=${new Date()}`).then(res => res.json()).then(data => {
             campaigns = data;
 
+            const isSetup = window.location.search.indexOf('setup') !== -1;
             const campaignParam = window.location.search.replace(/^.*?campaign\=/, '');
+
             currentCampaign = campaigns[campaignParam];
 
-            initFabric();
-            initControls();
+            if (isSetup) {
+                document.body.classList.add('is-setup-view');
+                initViewSetup();
+            } else if (currentCampaign) {
+                document.body.classList.add('is-create-view');
+                initViewCreate();
+            } else {
+                document.body.classList.add('is-list-view');
+                initViewList();
+            }
         });
     }
 
-    function initControls() {
+    function initViewList() {
+        const campaignList = document.getElementById('campaigns-list');
 
-        if (!currentCampaign) {
-            document.getElementById('serialize').addEventListener('click', copyFabricToClipboard);
-            document.getElementById('controls').classList.add('is-editable');
-        } else {
-            document.getElementById('download').addEventListener('click', downloadAsImage);
-        }
+        Object.keys(campaigns).map(function (campaignId) {
+            const campaign = campaigns[campaignId];
+
+            campaignList.insertAdjacentHTML('afterbegin', `<li>
+                <a href="?campaign=${campaignId}">
+                    <img src="assets/${campaign.imageSource}" alt="${campaign.name}" />
+                    <h4>${campaign.name}</h4>
+                </a>
+            </li>
+            `);
+        });
     }
 
-    function initFabric() {
-        canvasFabric = new fabric.Canvas('canvas');
+    function initViewSetup() {
+        document.getElementById('serialize').addEventListener('click', copyFabricToClipboard);
+        document.getElementById('toggle-grid').addEventListener('click', toggleGridMarks);
+        initControlView();
+        initEditableFabric();
+    }
 
-        if (currentCampaign) {
-            initLoadedFabric();
-        } else {
-            initControlView();
-            initEditableFabric();
-        }
+    function initViewCreate() {
+        initLoadedFabric();
+        document.getElementById('download').addEventListener('click', downloadAsImage);
     }
 
     function initLoadedFabric() {
@@ -74,16 +93,19 @@
     }
 
     function initControlView() {
+        const imageContainer = document.createElement('div');
+        imageContainer.id = 'image-control';
         const controlImg = new Image();
 
-        controlImg.src = "assets/credit-mutuel-01-control.jpg";
-        document.getElementById('draw-area').appendChild(controlImg);
+        controlImg.src = `assets/${currentCampaign.imageSource}`;
+
+        imageContainer.appendChild(controlImg);
+
+        document.getElementById('draw-area').appendChild(imageContainer);
     }
 
     function initEditableFabric() {
-        const isEditable = window.location.search.indexOf('edit') !== -1;
-
-        fabric.Image.fromURL('assets/credit-mutuel-01.jpg', function (img) {
+        fabric.Image.fromURL(`assets/${currentCampaign.imageBase}`, function (img) {
             img.set({
                 left: 0,
                 top: 0,
@@ -99,7 +121,7 @@
             canvasFabric.calcOffset();
         });
 
-        const myfont = new FontFaceObserver('Open Sans');
+        const myfont = new FontFaceObserver(currentCampaign.fonts);
 
         myfont.load()
             .then(function () {
@@ -111,18 +133,16 @@
                     lineHeight: 0.85,
                     textAlign: 'center',
                     fontFamily: 'Open Sans',
-                    fill: '#b1b2b6',
-                    hoverCursor: isEditable ? 'cross' : 'text',
-                    lockMovementY: !isEditable,
-                    lockMovementX: !isEditable,
-                    hasControls: isEditable,
-                    hasBorders: isEditable,
-                    editable: true,
-                    selectable: true
+                    fill: '#b1b2b6'
                 });
 
                 canvasFabric.add(textboxOne);
             });
+    }
+
+    function toggleGridMarks() {
+        document.querySelector('.canvas-container').classList.toggle('grid-marks');
+        document.getElementById('image-control').classList.toggle('grid-marks');
     }
 
     function copyFabricToClipboard() {

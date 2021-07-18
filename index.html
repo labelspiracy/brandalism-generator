@@ -16,17 +16,32 @@
 </head>
 
 <body>
-    <div class="draw-area" id="draw-area">
-        <canvas id="canvas"></canvas>
+    <div class="if-list">
+        <ul class="campaigns-list" id="campaigns-list">
+            <li class="placeholder">
+                <h4>More coming soon!</h4>
+            </li>
+        </ul>
+    </div>
+
+    <div class="if-setup if-create">
+        <div class="draw-area" id="draw-area">
+            <canvas id="canvas"></canvas>
+        </div>
     </div>
 
     <ul class="controls" id="controls">
-        <li class="if-edit">
+        <li class="if-setup">
             <button type="button" id="serialize">
-                dl
+                export to clipboard
             </button>
         </li>
-        <li class="if-view">
+        <li class="if-setup">
+            <button type="button" id="toggle-grid">
+                grid
+            </button>
+        </li>
+        <li class="if-create">
             <button type="button" id="download">
                 download
             </button>
