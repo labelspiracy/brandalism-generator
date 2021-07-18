@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Brandalism Gen</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <div class="draw-area" id="draw-area">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <ul class="controls" id="controls">
+        <li class="if-edit">
+            <button type="button" id="serialize">
+                dl
+            </button>
+        </li>
+        <li class="if-view">
+            <button type="button" id="download">
+                download
+            </button>
+        </li>
+    </ul>
+
+    <script type="text/javascript" src="https://unpkg.com/fabric"></script>
+    <script type="text/javascript" src="https://unpkg.com/fontfaceobserver"></script>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>

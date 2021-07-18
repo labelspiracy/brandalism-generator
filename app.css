@@ -1,0 +1,30 @@
+html, body {
+    background: #222;
+    height: 100%;
+    margin: 0;
+}
+
+.draw-area {
+    padding-top: 1rem;
+    display: flex; 
+    justify-content: center;
+}
+
+.controls {
+    list-style: none;
+    padding: 1rem;
+    margin: 0;
+    text-align: center;
+}
+
+.if-edit{
+    display: none;
+}
+
+.is-editable .if-edit{
+    display: block;
+}
+
+ .is-editable .if-view{
+    display: none;
+}
