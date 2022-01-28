@@ -57,13 +57,20 @@
     }
 
     function initLoadedFabric() {
-        const myfont = new FontFaceObserver(currentCampaign.fonts);
+        var observers = [];
 
+        // Make one observer for each font,
+        // by iterating over the data we already have
+        currentCampaign.fonts.forEach(function(family) {
+            var obs = new FontFaceObserver(family);
+            observers.push(obs.load());
+        });
+        
         canvasFabric.setWidth(currentCampaign.width);
         canvasFabric.setHeight(currentCampaign.height);
         canvasFabric.calcOffset();
 
-        myfont.load()
+        Promise.all(observers)
             .then(function () {
                 canvasFabric.loadFromJSON(currentCampaign.canvas, function () {
                     const objects = canvasFabric.getObjects();
@@ -121,22 +128,58 @@
             canvasFabric.calcOffset();
         });
 
-        const myfont = new FontFaceObserver(currentCampaign.fonts);
+        var observers = [];
 
-        myfont.load()
+        // Make one observer for each font,
+        // by iterating over the data we already have
+        currentCampaign.fonts.forEach(function(family) {
+            var obs = new FontFaceObserver(family);
+            observers.push(obs.load());
+        });
+
+        Promise.all(observers)
             .then(function () {
-                textboxOne = new fabric.Textbox("Moins d'encre sur notre carte blanche en plastique recyclé, c'est tout simple mais c'est surtout plus écologique.", {
+                textboxOne = new fabric.Textbox("IF YOUR BANK FINANCES ARCTIC DRILLING", {
                     left: 50,
                     top: 50,
                     width: 185,
-                    fontSize: 18,
+                    fontSize: 28,
+                    fontWeight: 700,
                     lineHeight: 0.85,
-                    textAlign: 'center',
-                    fontFamily: 'Open Sans',
-                    fill: '#b1b2b6'
+                    textAlign: 'right',
+                    fontFamily: 'BenchNine',
+                    fill: '#000'
                 });
 
                 canvasFabric.add(textboxOne);
+
+                textboxTwo = new fabric.Textbox("SO DO YOU", {
+                    left: 50,
+                    top: 50,
+                    width: 185,
+                    fontSize: 28,
+                    fontWeight: 700,
+                    lineHeight: 0.85,
+                    textAlign: 'right',
+                    fontFamily: 'BenchNine',
+                    fill: '#018754'
+                });
+
+                canvasFabric.add(textboxTwo);
+
+                textboxThree = new fabric.Textbox("The bank for a changing world", {
+                    right: 10,
+                    top: 50,
+                    width: 205,
+                    fontSize: 14,
+                    fontWeight: 100,
+                    lineHeight: 0.85,
+                    textAlign: 'right',
+                    fontFamily: 'BNPP Sans',
+                    fill: '#000'
+                });
+
+                canvasFabric.add(textboxThree);
             });
     }
 
