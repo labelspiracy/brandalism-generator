@@ -1,0 +1,31 @@
+{
+  "name": "brandalism-generator",
+  "version": "1.0.0",
+  "description": "You can use the [editor on GitHub](https://github.com/labelspiracy/brandalism-generator/edit/main/README.md) to maintain and preview the content for your website in Markdown files.",
+  "main": "main.js",
+  "scripts": {
+    "start": "npx parcel src/index.html",
+    "build": "parcel build ./src/index.html --public-url ./",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup --verbose && npm run clean",
+    "clean": "rm -rf .parcel-cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-labelspiracy:labelspiracy/brandalism-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "classnames": "^2.3.1",
+    "parcel": "^2.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "^2.2.1",
+    "@parcel/transformer-sass": "^2.2.1"
+  }
+}
