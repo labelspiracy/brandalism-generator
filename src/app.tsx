@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+
 import {
     BrowserRouter as Router,
     Routes,
@@ -13,7 +13,7 @@ export function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<CampaignList />} />
-                <Route path="/edit/:id" element={<EditCampaign />} />
+                <Route path="/edit/:campaignId" element={<EditCampaign />} />
             </Routes>
         </Router>
     );

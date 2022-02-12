@@ -19,10 +19,12 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "classnames": "^2.3.1",
+    "fabric": "^5.0.0",
     "parcel": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "^2.2.1",

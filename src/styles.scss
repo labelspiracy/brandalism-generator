@@ -56,22 +56,6 @@ img {
     text-align: center;
 }
 
-.if-setup, .if-list, .if-create {
-    display: none;
-}
-
-.is-setup-view .if-setup {
-    display: inherit;
-}
-
-.is-create-view .if-create {
-    display: inherit;
-}
-
-.is-list-view .if-list {
-    display: inherit
-}
-
 .grid-marks {
     position: relative;
 }

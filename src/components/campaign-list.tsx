@@ -8,7 +8,7 @@ export default function CampaignList(props) {
         <ul className="campaigns-list">
             {campaigns.map(campaign => (
                 <li key={campaign.id}>
-                    <Link to={`/${campaign.id}`}>
+                    <Link to={`/edit/${campaign.id}`}>
                         <img src={campaign.imageSource} alt={campaign.name} />
                         <h4>{campaign.name}</h4>
                     </Link>
