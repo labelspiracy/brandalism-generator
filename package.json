@@ -1,9 +1,7 @@
 {
   "name": "brandalism-generator",
   "version": "1.0.0",
-  "description": "You can use the [editor on GitHub](https://github.com/labelspiracy/brandalism-generator/edit/main/README.md) to maintain and preview the content for your website in Markdown files.",
-  "main": "main.js",
-  "scripts": {
+    "scripts": {
     "start": "npx parcel src/index.html",
     "build": "parcel build ./src/index.html --public-url ./",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup --verbose && npm run clean",
