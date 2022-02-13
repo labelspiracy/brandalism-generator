@@ -10,27 +10,35 @@ html, body {
     margin: 0;
 }
 
+button {
+    border: 1px solid #888;
+    padding: 2px 5px;
+    background: transparent;
+    color: #aaa;
+    cursor: pointer;
+}
+
 .campaigns-list {
     display: grid;
     list-style: none;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 2rem;
-}
 
-.campaigns-list li {
-    border: 1px solid #555;
-    cursor: pointer;
-}
+    li {
+        border: 1px solid #555;
+        cursor: pointer;
+    }
 
-.campaigns-list h4 {
-    color: #aaa;
-    font-family: georgia;
-    font-weight: 600;
-    text-align: center;
-}
+    h4 {
+        color: #aaa;
+        font-family: georgia;
+        font-weight: 600;
+        text-align: center;
+    }
 
-.campaigns-list img {
-    width: 327px;
+    img {
+        width: 327px;
+    }
 }
 
 .placeholder {
@@ -49,47 +57,56 @@ img {
     display: block;
 }
 
+.image-source img {
+    max-width: calc(100vw / 3);
+}
+
 .controls {
     list-style: none;
     padding: 1rem;
     margin: 0;
     text-align: center;
+
+    li {
+        display: inline-block;
+        margin-right: .5rem;
+    }
 }
 
-.grid-marks {
+.with-grid-marks {
     position: relative;
-}
 
-.grid-marks:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    content: '';
-    background: repeating-linear-gradient(
-        to right,
-        red,
-        red 1px,
-        rgba(0, 0, 0, 0) 0,
-        rgba(0, 0, 0, 0) 33.33%
-    );
-    z-index: 9;
-}
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        content: '';
+        background: repeating-linear-gradient(
+            to right,
+            red,
+            red 1px,
+            rgba(0, 0, 0, 0) 0,
+            rgba(0, 0, 0, 0) 33.33%
+        );
+        z-index: 9;
+    }
 
-.grid-marks:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    content: '';
-    background: repeating-linear-gradient(
-        to bottom,
-        red,
-        red 1px,
-        rgba(0, 0, 0, 0) 0,
-        rgba(0, 0, 0, 0) 33.33%
-    );
-    z-index: 9;
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        content: '';
+        background: repeating-linear-gradient(
+            to bottom,
+            red,
+            red 1px,
+            rgba(0, 0, 0, 0) 0,
+            rgba(0, 0, 0, 0) 33.33%
+        );
+        z-index: 9;
+    }
 }

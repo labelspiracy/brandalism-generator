@@ -25,6 +25,12 @@ function initLoadedFabric(campaign, fabricCanvas) {
         .then(function () {
             fabricCanvas.loadFromJSON(campaign.canvas, function () {
                 const objects = fabricCanvas.getObjects();
+                const group = new fabric.Group(objects);
+
+                fabricCanvas.setWidth(group.width);
+                fabricCanvas.setHeight(group.height);
+
+                group.destroy();
 
                 objects.forEach(obj => {
                     if (obj.type === 'textbox') {
@@ -80,14 +86,16 @@ export default function EditCampaign() {
     const { campaignId } = useParams();
     const campaign = campaigns.find(campaign => campaign.id === campaignId);
     const [loadedCanvas, setLoadedCanvas] = useState(false);
-    let fabricCanvas;
+    const [fabricCanvas, setFabricCanvas] = useState(null);
+    
     let canvasEl = useRef(null);
 
     useEffect(() => {
-        if (campaign) {
-            fabricCanvas = new fabric.Canvas(canvasEl.current);
-            initLoadedFabric(campaign, fabricCanvas);
+        if (campaign && !loadedCanvas) {
+            const newFabricCanvas = new fabric.Canvas(canvasEl.current);
+            initLoadedFabric(campaign, newFabricCanvas);
 
+            setFabricCanvas(newFabricCanvas);
             setLoadedCanvas(true);
         }
     }, [loadedCanvas]);
