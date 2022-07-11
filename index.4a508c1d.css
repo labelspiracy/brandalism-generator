@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "BNPP Sans";
+  src: url("bnpp-sans-bold.a2aebb1c.ttf");
+}
+html, body {
+  background: #222;
+  height: 100%;
+  margin: 0;
+}
+button {
+  border: 1px solid #888;
+  padding: 2px 5px;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+}
+.campaigns-list {
+  display: grid;
+  list-style: none;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 2rem;
+}
+.campaigns-list li {
+  border: 1px solid #555;
+  cursor: pointer;
+}
+.campaigns-list h4 {
+  color: #aaa;
+  font-family: georgia;
+  font-weight: 600;
+  text-align: center;
+}
+.campaigns-list img {
+  width: 327px;
+}
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.draw-area {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+img {
+  display: block;
+}
+.image-source img {
+  max-width: 33.3333333333vw;
+}
+.controls {
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+  text-align: center;
+}
+.controls li {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+.with-grid-marks {
+  position: relative;
+}
+.with-grid-marks:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  content: "";
+  background: repeating-linear-gradient(to right, red, red 1px, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 33.33%);
+  z-index: 9;
+}
+.with-grid-marks:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  content: "";
+  background: repeating-linear-gradient(to bottom, red, red 1px, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 33.33%);
+  z-index: 9;
+}
+/*# sourceMappingURL=index.4a508c1d.css.map */
